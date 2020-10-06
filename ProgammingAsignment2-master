@@ -1,0 +1,65 @@
+
+R version 4.0.2 (2020-06-22) -- "Taking Off Again"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> ## Put comments here that give an overall description of what your
+> ## functions do
+> 
+> ## Write a short comment describing this function
+> ##The first function,makecachematrix creates a special "matrix" which a list containing a function to
+> 
+> makeCacheMatrix <- function(x = matrix()) {
++ ##Set the value of the matrix
++ ## Get the value of the matrix
++ ## Set the value of the inverse
++ ## Get the value of the inverse
++ makeCacheMatrix <- function(x = matrix()) {
++   i<-NULL
++   set<-function(y){
++      x<<-y
++      i<<-NULL
++ }
++ get<-function()x
++ setinverse<-function(inverse)i<<-inverse
++ getinverse<-function()i
++ list(set = set,
++      get = get,
++      setinverse = setinverse,
++      getinverse = getinverse)
++ }
++ 
++ 
++ ## Write a short comment describing this function
++ ##The following function compute the inverse of the special "matrix " created with the above function
++ 
++ cacheSolve <- function(x, ...) {
++         ## Return a matrix that is the inverse of 'x'
++ i<-x$getinverse()
++ if(!is.null(i)){
++    message("getting cached data")
++    return(i)
++ }
++ data<-x$get()
++ i<-solve(data,...)
++ x$setinverse(i)
++ i
++ }
++ 
++ 
